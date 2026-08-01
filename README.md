@@ -38,6 +38,7 @@ Using Maven Wrapper:
 If Maven is installed globally on your system, you can also use:
 
 mvn spring-boot:run
+
 mvn test
 
 ## API Endpoints
