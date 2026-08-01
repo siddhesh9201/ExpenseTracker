@@ -19,13 +19,25 @@ A REST API built using Spring Boot to manage personal expenses.
 - JUnit 5
 - Swagger (OpenAPI)
 
-## Run the Application
+## Running the Project
+
+This project includes the Maven Wrapper, so a separate Maven installation is not required.
+
+## Start the application
+
+Using Maven Wrapper (recommended):
+
+./mvnw.cmd spring-boot:run
+
+## Run the test suite
+
+Using Maven Wrapper:
+
+./mvnw.cmd test
+
+If Maven is installed globally on your system, you can also use:
 
 mvn spring-boot:run
-
-
-## Run Tests
-
 mvn test
 
 ## API Endpoints
