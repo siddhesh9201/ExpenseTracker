@@ -5,6 +5,8 @@ import com.expenseTracker.expenseTracker.Dto.ExpenseRequestDto;
 import com.expenseTracker.expenseTracker.Exception.CategoryNotFoundException;
 import com.expenseTracker.expenseTracker.Exception.ExpensesNotFoundException;
 import com.expenseTracker.expenseTracker.Model.Expense;
+import com.expenseTracker.expenseTracker.Repository.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,8 +20,13 @@ import java.util.stream.Collectors;
 public class ExpenseTrackerService {
      private long id=1L;
 
-     List<Expense> list = new ArrayList<>();
+    private final Repository repository;
+    private final List<Expense> list;
 
+    public ExpenseTrackerService(Repository repository) {
+        this.repository = repository;
+        this.list = repository.getDB();
+    }
      public Expense addExpense(ExpenseRequestDto expense){
          Expense expenseEntity = new Expense();
          expenseEntity.setId(id++);
