@@ -1,0 +1,13 @@
+# AI Usage Notes
+
+## AI-generated assistance
+- Used AI guidance to integrate Swagger (OpenAPI) into the Spring Boot project.
+- Used AI for explanations of JUnit assertions .
+
+## What I implemented and verified
+- Implemented the Expense Tracker REST API myself.
+- Implemented CRUD operations and business logic.
+- Added validation and custom exception handling.
+- Tested all APIs using Postman.
+- Verified the project runs successfully and the Swagger UI is accessible.
+- in-memory data storage instead of database
