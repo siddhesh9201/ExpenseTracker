@@ -1,12 +1,14 @@
 package com.expenseTracker.expenseTracker.Service;
 
 
+import com.expenseTracker.expenseTracker.Dto.ExpenseRequestDto;
 import com.expenseTracker.expenseTracker.Exception.CategoryNotFoundException;
 import com.expenseTracker.expenseTracker.Exception.ExpensesNotFoundException;
 import com.expenseTracker.expenseTracker.Model.Expense;
 import jdk.jfr.Category;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +17,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExpenseTrackerService {
+     private long id=0L;
 
      List<Expense> list = new ArrayList<>();
 
-     public Expense addExpense(Expense expense){
-         list.add(expense);
+     public Expense addExpense(ExpenseRequestDto expense){
+         Expense expenseEntity = new Expense();
+         expenseEntity.setId(id+1);
+         expenseEntity.setDate(LocalDate.now());
+         expenseEntity.setCategory(expense.getCategory());
+         expenseEntity.setTitle(expense.getTitle());
+         expenseEntity.setAmount(expense.getAmount());
+
+         list.add(expenseEntity);
          return list.get(list.size()-1);
      }
 
