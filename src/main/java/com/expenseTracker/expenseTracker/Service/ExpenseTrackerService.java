@@ -6,15 +6,14 @@ import com.expenseTracker.expenseTracker.Exception.CategoryNotFoundException;
 import com.expenseTracker.expenseTracker.Exception.ExpensesNotFoundException;
 import com.expenseTracker.expenseTracker.Model.Expense;
 import com.expenseTracker.expenseTracker.Repository.Repository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @Service
 public class ExpenseTrackerService {
