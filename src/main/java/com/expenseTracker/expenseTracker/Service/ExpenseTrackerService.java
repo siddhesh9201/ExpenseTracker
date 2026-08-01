@@ -5,7 +5,6 @@ import com.expenseTracker.expenseTracker.Dto.ExpenseRequestDto;
 import com.expenseTracker.expenseTracker.Exception.CategoryNotFoundException;
 import com.expenseTracker.expenseTracker.Exception.ExpensesNotFoundException;
 import com.expenseTracker.expenseTracker.Model.Expense;
-import jdk.jfr.Category;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,13 +16,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExpenseTrackerService {
-     private long id=0L;
+     private long id=1L;
 
      List<Expense> list = new ArrayList<>();
 
      public Expense addExpense(ExpenseRequestDto expense){
          Expense expenseEntity = new Expense();
-         expenseEntity.setId(id+1);
+         expenseEntity.setId(id++);
          expenseEntity.setDate(LocalDate.now());
          expenseEntity.setCategory(expense.getCategory());
          expenseEntity.setTitle(expense.getTitle());
@@ -46,12 +45,12 @@ public class ExpenseTrackerService {
 
    public String deleteExpenseById(Long id){
          for(Expense expense : list){
-             if(expense.getId()==id){
-                 list.remove(id);
+             if(expense.getId().equals(id)){
+                 list.remove(expense);
                  return "Expense Deleted Successfully!";
              }
          }
-         return "Expense Not Exist For This" + id ;
+         return "Expense not found with id " + id ;
    }
   public Expense getExpenseByCategory(String category){
       for(Expense expense : list){
@@ -60,7 +59,7 @@ public class ExpenseTrackerService {
           }
       }
 
-      throw new CategoryNotFoundException("Expense Not found for "+ category);
+      throw new CategoryNotFoundException("Expense Not found with id "+ category);
 
   }
 
@@ -86,7 +85,7 @@ public class ExpenseTrackerService {
       list.stream().forEach(expense -> {
           map.put(
                   expense.getCategory(),
-                  map.getOrDefault(expense.getCategory(), expense.getAmount()) + expense.getAmount()
+                  map.getOrDefault(expense.getCategory(), 0.0) + expense.getAmount()
           );
       });
   return map;

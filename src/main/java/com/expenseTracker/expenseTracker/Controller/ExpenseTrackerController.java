@@ -45,7 +45,7 @@ public class ExpenseTrackerController{
     }
 
     @GetMapping("/category/total")
-    public ResponseEntity<Map<String,Double>> getCategoryWiseTotal(@PathVariable String category){
+    public ResponseEntity<Map<String,Double>> getCategoryWiseTotal(){
         return ResponseEntity.ok(expenseTrackerService.findCategoryWiseTotal());
     }
 }
