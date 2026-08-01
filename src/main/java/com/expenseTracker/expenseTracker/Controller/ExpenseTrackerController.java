@@ -4,6 +4,7 @@ package com.expenseTracker.expenseTracker.Controller;
 import com.expenseTracker.expenseTracker.Dto.ExpenseRequestDto;
 import com.expenseTracker.expenseTracker.Model.Expense;
 import com.expenseTracker.expenseTracker.Service.ExpenseTrackerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ExpenseTrackerController{
     ExpenseTrackerService expenseTrackerService;
 
     @PostMapping("/add")
-    public ResponseEntity<Expense> addNewExpense(@RequestBody ExpenseRequestDto expense){
+    public ResponseEntity<Expense> addNewExpense(@Valid  @RequestBody ExpenseRequestDto expense){
         return ResponseEntity.ok(expenseTrackerService.addExpense(expense));
     }
     @GetMapping("/get")
@@ -38,7 +39,7 @@ public class ExpenseTrackerController{
     }
 
 
-    @GetMapping("/getTotalCategory/{category}")
+    @GetMapping("/getByCategory/{category}")
     public ResponseEntity<Expense> getCategoryById(@PathVariable String category){
         return ResponseEntity.ok(expenseTrackerService.getExpenseByCategory(category));
     }
